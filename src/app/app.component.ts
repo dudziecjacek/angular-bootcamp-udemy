@@ -8,8 +8,23 @@ import { lorem } from 'faker';
 })
 export class AppComponent {
 
+  randomSentence: string;
+  inputSentence: string;
+
   constructor() {
-    lorem.sentence();
+    this.randomSentence = lorem.sentence();
+    this.inputSentence = '';
+  }
+
+  compareInputToSentence(value) {
+    this.inputSentence = value;
+  }
+
+  compareLetters(letter, inputSentence) {
+    if (!inputSentence) { return 'gray'; }
+
+    if (letter === inputSentence) { return 'green'; } else if (letter !== inputSentence) { return 'red'; }
+    // letter === inputSentence[i] ? 'green' : 'red'
   }
 
 }

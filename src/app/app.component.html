@@ -3,13 +3,19 @@
     <div class="box column is-one-third">
       <h1 class="title has-text-centered">Typing Challenge</h1>
 
-      <p class="has-text-centered">Randomly generated text</p>
+      <p class="has-text-centered disable-text-selection">
+        <span [ngClass]="compareLetters(letter, inputSentence[i])"
+              *ngFor="let letter of randomSentence.split(''); let i = index;">{{letter}}</span>
+      </p>
 
       <div class="field">
-        <input class="input" />
+        <input class="input"
+               [(ngModel)]="inputSentence"
+               (input)="compareInputToSentence($event.target.value)" />
       </div>
 
-      <div class="box has-text-centered">
+      <div *ngIf="randomSentence === inputSentence"
+           class="box has-text-centered">
         <h1 class="title">Succes!</h1>
       </div>
     </div>
